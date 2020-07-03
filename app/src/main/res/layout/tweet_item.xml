@@ -16,7 +16,7 @@
             android:id="@+id/user_image"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/contactplaceholder"/>
+            />
 
         <TextView
             android:id="@+id/tweet_username"
@@ -28,7 +28,7 @@
             android:elevation="2dp"
             android:text="Dinesh Choudhary"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:layout_above="@id/tweet_screenname"/>
 
@@ -41,7 +41,7 @@
             android:layout_toEndOf="@id/user_image"
             android:layout_alignBottom="@id/user_image"
             android:text="Dinesh@1997"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:gravity="bottom"/>
 
     </RelativeLayout>
@@ -51,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="weather is hot and humid today such a fine weather want to go to hot springs"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textColor="@color/black"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp"/>

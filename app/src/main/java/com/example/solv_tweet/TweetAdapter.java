@@ -8,10 +8,13 @@ import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -38,14 +41,24 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.TweetViewHol
         Status status = statuses.get(position);
         holder.userName.setText(status.getUser().getName());
         holder.screenName.setText(status.getUser().getScreenName());
-//        SpannableString spannableString = new SpannableString(status.getFull_text());
-//        ForegroundColorSpan blue = new ForegroundColorSpan(Color.BLUE);
-//        List<Hashtag> hashtagList = status.getEntities().getHashtags();
-//        if (hashtagList.size() != 0) {
-//            spannableString.setSpan(blue, hashtagList.get(position).getIndices().get(0)
-//                    , hashtagList.get(position).getIndices().get(0), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-//        }
-        holder.TweetText.setText(status.getFull_text());
+
+        Picasso.get().load(status.getUser().getProfileImageUrlHttps()).placeholder(R.drawable.contactplaceholder)
+                .error(R.drawable.contactplaceholder).into(holder.profilePic);
+
+        List<Hashtag> hashtagList = status.getEntities().getHashtags();
+        if (hashtagList.size() != 0 && !status.getTruncated()) {
+            SpannableString spannableString = new SpannableString(status.getFull_text());
+
+            for(int i = 0; i<hashtagList.size(); i++) {
+                ForegroundColorSpan blue = new ForegroundColorSpan(Color.BLUE);
+                spannableString.setSpan(blue, hashtagList.get(i).getIndices().get(0)
+                        , hashtagList.get(i).getIndices().get(1), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
+            holder.TweetText.setText(spannableString);
+        }
+        else {
+            holder.TweetText.setText(status.getFull_text());
+        }
         holder.favorite.setText(Integer.toString(status.getFavoriteCount()));
         holder.retweet_count.setText(Integer.toString(status.getRetweetCount()));
 
@@ -60,6 +73,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.TweetViewHol
 
         TextView userName;
         TextView screenName;
+        ImageView profilePic;
         TextView TweetText;
         TextView favorite;
         TextView retweet_count;
@@ -68,6 +82,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.TweetViewHol
             super(itemView);
             userName = itemView.findViewById(R.id.tweet_username);
             screenName = itemView.findViewById(R.id.tweet_screenname);
+            profilePic = itemView.findViewById(R.id.user_image);
             TweetText = itemView.findViewById(R.id.tweet_text);
             favorite = itemView.findViewById(R.id.favorite_count);
             retweet_count = itemView.findViewById(R.id.retweet_count);
