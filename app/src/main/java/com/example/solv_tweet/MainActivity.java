@@ -1,11 +1,14 @@
 package com.example.solv_tweet;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -31,8 +34,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.trending_recycler);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(itemDecoration);
         gettrends();
-        recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
 
     }
 
@@ -48,12 +52,12 @@ public class MainActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
                 recyclerView.setAdapter(adapter);
 
-                Toast.makeText((MainActivity.this), "success" + trendList, Toast.LENGTH_SHORT).show();
+//                Toast.makeText((MainActivity.this), "success" + trendList, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<ArrayList<Trendingtopic>> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Failed" + t, Toast.LENGTH_SHORT).show();
 
             }
         });

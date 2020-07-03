@@ -2,6 +2,7 @@ package com.example.solv_tweet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -12,12 +13,16 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 public class TwitterApiInterface {
 
     private static final String bearer_token = "AAAAAAAAAAAAAAAAAAAAABZMFQEAAAAA3Yp2VKFhAuog167xZmnBeYVdo64%3DKbYVDqEQRDk2RN7LGo35HiUlENSrIKXA6yWF2Rv7V0vuvjS5HD";
     private static final String url = "https://api.twitter.com/1.1/";
     private static final String id = "23424848";
+
 
     public static TrendTopics trendTopics= null;
 
@@ -49,6 +54,14 @@ public class TwitterApiInterface {
         @GET("trends/place.json?id="+id)
         Call<ArrayList<Trendingtopic>> getTrendingtopics();
 
+        @GET("search/tweets.json?")
+        Call<TweetList> getPopulartweets(@QueryMap(encoded = true) Map<String, String> Popular_query);
+
+        @GET("search/tweets.json?")
+        Call<TweetList> getLatesttweets(@QueryMap(encoded = true) Map<String, String> Recent_query);
+
     }
+
+
 
 }

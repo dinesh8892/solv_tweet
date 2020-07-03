@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="Top Trends"
+        app:titleTextColor="@color/white"
         android:background="@color/colorPrimary"
         />
     <LinearLayout
@@ -23,6 +24,7 @@
             android:layout_height="match_parent"
             android:scrollbars="vertical"
             android:layout_weight="1"
+            android:outlineProvider="bounds"
             />
 
     </LinearLayout>

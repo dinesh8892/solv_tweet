@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:elevation="8dp"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/user_image"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/contactplaceholder"/>
+
+        <TextView
+            android:id="@+id/tweet_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_toEndOf="@id/user_image"
+            android:elevation="2dp"
+            android:text="Dinesh Choudhary"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_above="@id/tweet_screenname"/>
+
+        <TextView
+            android:id="@+id/tweet_screenname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_toEndOf="@id/user_image"
+            android:layout_alignBottom="@id/user_image"
+            android:text="Dinesh@1997"
+            android:textSize="16sp"
+            android:gravity="bottom"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tweet_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="weather is hot and humid today such a fine weather want to go to hot springs"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp">
+
+        <ImageView
+            android:id="@+id/favorite_img"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/favorite_icon"
+            android:layout_centerVertical="true"
+
+            />
+
+        <TextView
+            android:id="@+id/favorite_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:text="1000"
+
+            android:layout_toEndOf="@id/favorite_img"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="8dp"/>
+
+
+
+        <ImageView
+            android:id="@+id/retweet_img"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/retweet_count"
+            android:layout_toEndOf="@id/favorite_count"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:id="@+id/retweet_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:text="1000"
+            android:layout_toEndOf="@id/retweet_img"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="8dp"/>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

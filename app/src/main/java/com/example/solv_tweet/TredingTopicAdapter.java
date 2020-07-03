@@ -1,10 +1,12 @@
 package com.example.solv_tweet;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +18,9 @@ public class TredingTopicAdapter extends RecyclerView.Adapter<TredingTopicAdapte
 
     private Context context;
     private List<Trend> trends;
+    private RecyclerView mRecyclerView;
+
+
 
     public TredingTopicAdapter(Context context, List<Trend> trends) {
         this.context = context;
@@ -27,6 +32,7 @@ public class TredingTopicAdapter extends RecyclerView.Adapter<TredingTopicAdapte
     public TrendingTopicViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.trend_itemview, parent, false);
+        view.setOnClickListener(myonClickListener);
         return new TrendingTopicViewHolder(view);
     }
 
@@ -35,6 +41,7 @@ public class TredingTopicAdapter extends RecyclerView.Adapter<TredingTopicAdapte
         Trend trend = trends.get(position);
         holder.topicTitle.setText(trend.getName());
         holder.topicTweetVolume.setText(Integer.toString(trend.getTweetVolume()));
+
 
     }
 
@@ -53,5 +60,24 @@ public class TredingTopicAdapter extends RecyclerView.Adapter<TredingTopicAdapte
             topicTweetVolume = itemView.findViewById(R.id.trending_topic_Volume);
         }
     }
+
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        this.mRecyclerView = recyclerView;
+    }
+
+    private final View.OnClickListener myonClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            int itemPosition = mRecyclerView.getChildAdapterPosition(v);
+            Trend trend = trends.get(itemPosition);
+//            Toast.makeText(context, "itemPosition :" + itemPosition + ": " + trend, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, DisplayTweetActivity.class);
+            intent.putExtra("query", trends.get(itemPosition).getQuery());
+            context.startActivity(intent);
+
+        }
+    };
 
 }
